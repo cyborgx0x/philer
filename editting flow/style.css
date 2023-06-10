@@ -1,0 +1,44 @@
+#mainContent {
+    padding:10px;
+  }
+  .btn.overlay {
+    position: absolute;
+    display: none;
+  }
+  .card-title {
+    padding: 1em;
+    margin-bottom: 0;
+    background: #12c2e9;  
+    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    z-index:100;
+  }
+  .card {
+    min-height:200px;
+    height: 80vh;
+    justify-content: center;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    transition: 500ms;
+    background-size: cover;
+    margin:1em;
+  }
+  .card:hover > .btn.overlay{
+    display: grid;
+    z-index:101;
+  }
+  .card:hover {
+    transform: scale(1.03);
+  }
+  .card-body {
+    color: white;
+    background: rgba(5,5,5,0.3);
+  }
+  #editor {
+    min-height:100%;
+    width:100%;
+    background-color:#fff;
+    display:none;
+    overflow: scroll;
+  }

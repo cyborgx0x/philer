@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiction editor</title>
+    <link rel="stylesheet" href="tabler.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="method.js"></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    
+    <div class="container">
+        <div>
+            <h1>Batch Editor</h1>
+        </div>
+        <div class="row">
+            <div id="search">
+                <input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm">
+            </div>
+        </div>
+        <button class="btn" onclick="create_box()">➕ Thêm mục mới</button>
+        <div class="row" id="root">
+            <div class="col-3">
+                <div class="editor">
+                    <div class="box_title" contenteditable="true">Hàn Phong</div>
+                    <div class="box_content" contenteditable="true">
+                        đệ tử Đại Mạc tiên tông, bạn thân của nhân vật chính, tư chất xuất chúng, tính tình khốc liệt, thích cạnh tranh, thi đấu, là một ngọn dao sắc bén của Đại Mạc tiên tông.
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="editor">
+                    <div class="box_title" contenteditable="true">Tiểu Nhuệ</div>
+                    <div class="box_content" contenteditable="true">
+                        đệ tử Đại Mạc tiên tông, tính tình ôn hòa, thích nghiên cứu, là đệ tử giao thiệp rộng rãi của tông môn
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="editor">
+                    <div class="box_title" contenteditable="true">Cốt truyện</div>
+                    <div class="box_content" contenteditable="true">
+                        <p>
+                            Lịch Đại Thiên, năm thứ 30765, Đại Mạc Tiên Tông có việc lớn xảy ra, cả tông môn bỗng chốc mất tăm hơi sau một đêm. 
+                        </p>
+                        <p>
+                            Chỉ có hai đệ tử là Hàn Phong và Tiểu Nhuệ, tỉnh dậy là không thấy ai. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="editor">
+                    <div class="box_title" contenteditable="true">Nội dung chương 13</div>
+                    <div class="box_content" contenteditable="true">
+                        <p>
+                            Tiểu Nhuệ khiếp sợ nhìn về thung lũng phía trước, một thứ cảm giác nhức nhối như côn trùng cắn xé cứ lan tỏa dần trong tâm trí nàng. 
+                        </p>
+                        <p>
+                            <em>- Thứ này mang đến cho ta cảm giác rất khó chịu</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

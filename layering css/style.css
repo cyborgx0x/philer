@@ -1,0 +1,47 @@
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.background {
+    min-height: 100vh;
+    background: #c31432;  
+    background: -webkit-linear-gradient(to right, #240b36, #c31432);  
+    background: linear-gradient(to right, #240b36, #c31432); 
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.layer-1 {
+    min-height: 100px;
+    position: relative;
+    width: 100vh;
+    background: #8A2387; 
+    background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387);
+    background: linear-gradient(to right, #F27121, #E94057, #8A2387); 
+    padding: 2em 1em;
+    border: solid 20px linear-gradient(to right, #240b36, #c31432); 
+}
+
+.layer-2{
+    min-height: 40vh;
+    width: 100vh;
+    background-image: url(http://www.elleman.vn/wp-content/uploads/2018/04/07/isao-takahara-5.jpg);
+    background-size: cover;
+}
+.overlay{
+    position: absolute;
+    top: 1em;
+    right:1em;
+    font-size: 1.2em;
+}
+#pixie {
+    z-index:0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }

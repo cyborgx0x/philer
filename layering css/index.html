@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layering CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="fireflies.js"></script>
+    <script src="modernizr.min.js" type="text/javascript"></script>
+    <script src="jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="container" id="container">
+        
+
+        <div class="background">
+            <canvas id="pixie"></canvas>
+            <div class="layer-1">
+                <div class="overlay">⭐</div>
+                <h1>Mộ đom đóm</h1>
+                <audio autoplay>
+                    <source src="https://www.datocms-assets.com/47208/1621450482-a-beautiful-piano-song-original-by-jervy-hou.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p>Mộ đom đóm (火垂るの墓 Hotaru no Haka?, Grave of the Fireflies) là một bộ phim hoạt hình Nhật Bản của hãng phim hoạt hình Ghibli sản xuất năm 1988 do đạo diễn Takahata Isao viết kịch bản và đạo diễn. Bộ phim được dựa theo cuốn tiểu thuyết cùng tên của Nosaka Akiyuki vốn được tác giả viết dưới dạng bán tự truyện như là một lời xin lỗi với người em gái của chính tác giả. Giống như các tác phẩm khác của hãng Ghibli, bộ phim được chú ý nhờ đạt được chất lượng cao cả về mặt nghệ thuật và hình ảnh.</p>
+                <div class="layer-2">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var WIDTH;
+        var HEIGHT;
+        var canvas;
+        var con;
+        var g;
+        var pxs = new Array();
+        var rint = 50;
+
+        $(document).ready(function(){
+        WIDTH = window.innerWidth;
+        HEIGHT = window.innerHeight;
+            $('#container').width(WIDTH).height(HEIGHT);
+            canvas = document.getElementById('pixie');
+            $(canvas).attr('width', WIDTH).attr('height',HEIGHT);
+            con = canvas.getContext('2d');
+            for(var i = 0; i < 50; i++) {
+                pxs[i] = new Circle();
+                pxs[i].reset();
+            }
+            setInterval(draw,rint);
+            setInterval(draw,rint2);
+
+        });
+
+        function draw() {
+            con.clearRect(0,0,WIDTH,HEIGHT);
+            for(var i = 0; i < pxs.length; i++) {
+                pxs[i].fade();
+                pxs[i].move();
+                pxs[i].draw();
+            }
+        }
+
+        function Circle() {
+            this.s = {ttl:8000, xmax:5, ymax:2, rmax:10, rt:1, xdef:960, ydef:540, xdrift:4, ydrift: 4, random:true, blink:true};
+
+            this.reset = function() {
+                this.x = (this.s.random ? WIDTH*Math.random() : this.s.xdef);
+                this.y = (this.s.random ? HEIGHT*Math.random() : this.s.ydef);
+                this.r = ((this.s.rmax-1)*Math.random()) + 1;
+                this.dx = (Math.random()*this.s.xmax) * (Math.random() < .5 ? -1 : 1);
+                this.dy = (Math.random()*this.s.ymax) * (Math.random() < .5 ? -1 : 1);
+                this.hl = (this.s.ttl/rint)*(this.r/this.s.rmax);
+                this.rt = Math.random()*this.hl;
+                this.s.rt = Math.random()+1;
+                this.stop = Math.random()*.2+.4;
+                this.s.xdrift *= Math.random() * (Math.random() < .5 ? -1 : 1);
+                this.s.ydrift *= Math.random() * (Math.random() < .5 ? -1 : 1);
+            }
+
+            this.fade = function() {
+                this.rt += this.s.rt;
+            }
+
+            this.draw = function() {
+                if(this.s.blink && (this.rt <= 0 || this.rt >= this.hl)) this.s.rt = this.s.rt*-1;
+                else if(this.rt >= this.hl) this.reset();
+                var newo = 1-(this.rt/this.hl);
+                con.beginPath();
+                con.arc(this.x,this.y,this.r,0,Math.PI*2,true);
+                con.closePath();
+                var cr = this.r*newo;
+                g = con.createRadialGradient(this.x,this.y,0,this.x,this.y,(cr <= 0 ? 1 : cr));
+                g.addColorStop(0.0, 'rgba(238,180,28,'+newo+')');
+                g.addColorStop(this.stop, 'rgba(238,180,28,'+(newo*.2)+')');
+                g.addColorStop(1.0, 'rgba(238,180,28,0)');
+                con.fillStyle = g;
+                con.fill();
+            }
+
+            this.move = function() {
+                this.x += (this.rt/this.hl)*this.dx;
+                this.y += (this.rt/this.hl)*this.dy;
+                if(this.x > WIDTH || this.x < 0) this.dx *= -1;
+                if(this.y > HEIGHT || this.y < 0) this.dy *= -1;
+            }
+
+            this.getX = function() { return this.x; }
+            this.getY = function() { return this.y; }
+        }
+    </script>
+</body>
+</html>
